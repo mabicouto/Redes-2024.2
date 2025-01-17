@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site de Finanças Familiares</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <button class="sidebar-trigger" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h1>Finanças Familiares</h1>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li class="dropdown">
+          <a href="#opcoes">Opções</a>
+          <ul class="dropdown-menu">
+            <li><button class="submenu-button">Dashboard</button></li>
+            <li><button class="submenu-button">Relatórios</button></li>
+            <li><button class="submenu-button">Configurações</button></li>
+          </ul>
+        </li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="#resumo"><i class="fas fa-chart-pie"></i> Resumo</a></li>
+      <li><a href="#orcamento"><i class="fas fa-wallet"></i> Orçamento</a></li>
+      <li><a href="#metas"><i class="fas fa-bullseye"></i> Metas</a></li>
+      <li><a href="#dicas"><i class="fas fa-lightbulb"></i> Dicas</a></li>
+      <li><a href="#ajuda"><i class="fas fa-question-circle"></i> Ajuda</a></li>
+    </ul>
+  </div>
+
+  <div class="maininfo-container">
+    <div class="visaoinfo-container">
+      <h2>Resumo Financeiro</h2>
+      <p>Visualize aqui as informações importantes sobre suas finanças, como saldo, despesas e receitas.</p>
+    </div>
+
+    <div class="buttons-container">
+      <button class="square-button transacao">
+        <i class="fas fa-plus-circle"></i>
+        Nova Transação
+      </button>
+      <button class="square-button importar">
+        <i class="fas fa-file-import"></i>
+        Importar Dados
+      </button>
+      <button class="square-button receita">
+        <i class="fas fa-money-bill-wave"></i>
+        Adicionar Receita
+      </button>
+      <button class="square-button transferir">
+        <i class="fas fa-exchange-alt"></i>
+        Transferir
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.style.left = sidebar.style.left === '0px' ? '-280px' : '0px';
+    }
+  </script>
+</body>
+</html>

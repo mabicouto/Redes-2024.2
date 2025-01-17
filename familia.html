@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Família</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #1a237e;
+      --secondary-color: #00bcd4;
+      --background-color: #f5f5f5;
+      --text-color: #333;
+      --white: #ffffff;
+      --success: #2ecc71;
+      --danger: #ff4444;
+      --info: #3498db;
+      --neutral: #3b3a35;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1rem;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .sidebar-trigger {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-trigger:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Navigation Styles */
+  .menu {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+  }
+  
+  .menu a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    min-width: 200px;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .submenu-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border: none;
+    background: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submenu-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background-color: var(--white);
+    padding-top: 5rem;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  .maininfo-container {
+      margin-top: 2rem;
+      padding: 5rem;
+      display: block;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .visaoinfo-container {
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .family-management {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .family-management h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .management-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .management-card {
+      background-color: var(--background-color);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .management-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .management-card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .management-card h3 {
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .management-card p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .info-section {
+      background-color: var(--background-color);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .info-section h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .info-card {
+      background-color: var(--white);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .info-card h4 {
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card p {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .management-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+    
+  <header>
+    <div class="header-left">
+      <button class="sidebar-trigger" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h1>Gerenciamento Familiar</h1>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="#dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="#membros"><i class="fas fa-users"></i> Membros</a></li>
+      <li><a href="#configuracoes"><i class="fas fa-cog"></i> Configurações</a></li>
+      <li><a href="#ajuda"><i class="fas fa-question-circle"></i> Ajuda</a></li>
+    </ul>
+  </div>
+
+  <div class="maininfo-container">
+    <div class="family-management">
+      <h2>Gerenciamento de Membros</h2>
+      
+      <div class="management-grid">
+        <div class="management-card">
+          <i class="fas fa-user-plus"></i>
+          <h3>Cadastrar Membro</h3>
+          <p>Adicione um novo membro à família com todas as informações necessárias</p>
+        </div>
+
+        <div class="management-card">
+          <i class="fas fa-user-minus"></i>
+          <h3>Retirar Membro</h3>
+          <p>Remova um membro da lista de forma segura e organizada</p>
+        </div>
+
+        <div class="management-card">
+          <i class="fas fa-search"></i>
+          <h3>Buscar Membro</h3>
+          <p>Procure rapidamente por qualquer membro cadastrado no sistema</p>
+        </div>
+
+        <div class="management-card">
+          <i class="fas fa-info-circle"></i>
+          <h3>Informações Gerais</h3>
+          <p>Visualize estatísticas e informações importantes sobre a família</p>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>Resumo</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>Total de Membros</h4>
+            <p>12</p>
+          </div>
+          <div class="info-card">
+            <h4>Média de Idade</h4>
+            <p>35</p>
+          </div>
+          <div class="info-card">
+            <h4>Membros Ativos</h4>
+            <p>10</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.style.left = sidebar.style.left === '0px' ? '-280px' : '0px';
+    }
+  </script>
+</body>
+</html>
+
+

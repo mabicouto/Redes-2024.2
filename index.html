@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site de Finanças Familiares</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Menu Superior -->
+  <header>
+    <div>
+      <!-- Gatilho para o menu lateral -->
+      <button class="sidebar-trigger" onclick="toggleSidebar()">☰</button>
+      <h1>Finanças Familiares</h1>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li class="dropdown">
+          <a href="#opcoes">Opções</a>
+          <!-- Dropdown do menu superior -->
+          <ul class="dropdown-menu">
+            <li><button class="submenu-button">Opção 1</button></li>
+            <li><button class="submenu-button">Opção 2</button></li>
+            <li><button class="submenu-button">Opção 3</button></li>
+          </ul>
+        </li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Menu Lateral -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="#resumo">Resumo</a></li>
+      <li><a href="#orcamento">Orçamento</a></li>
+      <li><a href="#metas">Metas</a></li>
+      <li><a href="#dicas">Dicas</a></li>
+      <li><a href="#ajuda">Ajuda</a></li>
+    </ul>
+  </div>
+
+  <!-- Container principal com resumo de informações -->
+  <div class="maininfo-container">
+    <!-- Resumo ou gráfico -->
+    <div class="visaoinfo-container">
+      <h3>Resumo Financeiro</h3>
+      <p>Visualize aqui as informações importantes sobre suas finanças, como saldo, despesas e receitas.</p>
+    </div>
+
+    <!-- Botões ao lado -->
+    <div class="buttons-container">
+      <button class="square-button transacao" aria-label="Nova Transação">
+        Nova Transação
+      </button>
+      <button class="square-button importar" aria-label="Importar Dados">
+        Importar Dados
+      </button>
+      <button class="square-button receita" aria-label="Adicionar Receita">
+        Adicionar Receita
+      </button>
+      <button class="square-button transferir" aria-label="Transferir Dinheiro">
+        Transferir Dinheiro
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Função para alternar a exibição do menu lateral
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.style.left = sidebar.style.left === '0px' ? '-250px' : '0px';
+    }
+  </script>
+</body>
+</html>
