@@ -171,6 +171,102 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
+    .container_graficos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+
+    .graficos {
+        margin-top: 2rem;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        grid-template-columns: 1fr;
+        gap: 1rem ;
+        width: 100%;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        color: var(--text-color);
+        font-weight: 500;
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .graficos h2 {
+        font-size: 1.5rem;
+        color: #003366;
+        margin-bottom: 0.5rem;
+    }
+
+    .graficos p {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 1.5rem;
+    }
+
+    .container_auxiliar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem; 
+        margin-top: 2rem;
+        width: calc(100% - 4rem); /* Changed from 60% to match button container width */
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: 2rem;       
+    }
+    .visaocontainer_auxiliar {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .visaocontainer_auxiliar h2 {
+        font-size: 1.5rem;
+        color: #003366;
+        margin-bottom: 1rem;
+    }
+
+    .visaocontainer_auxiliar p {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 1.5rem;
+    }
+
+    .atualizacao {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .atualizacao:hover {
+        transform: translate(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    .atualizacao h3 {
+        font-size: 1.2rem; /* Tamanho do título */
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .atualizacao p {
+        font-size: 0.9rem; /* Texto menor */
+        color: #666;
+    }
+
     .buttons-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -201,20 +297,47 @@
     .receita { background-color: var(--success); }
     .transferir { background-color: var(--neutral); }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .maininfo-container {
-        grid-template-columns: 1fr;
-      }
+    
 
-      .menu {
-        display: none;
-      }
-
-      .buttons-container {
-        grid-template-columns: 1fr;
-      }
+/* Rodapé */
+    .rodape {
+    background-color: darkblue; /* Cor igual ao menu superior */
+    color: aliceblue; /* Cor do texto */
+    padding: 20px 40px; /* Espaçamento interno */
+    display: flex; /* Layout flexível */
+    align-items: center; /* Alinha verticalmente os itens */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destacar o rodapé */
     }
+
+    .rodape-content {
+    display: flex; /* Layout flexível interno */
+    align-items: center; /* Alinha logo e texto no centro verticalmente */
+    gap: 10px; /* Espaço entre a logo e o texto */
+    }
+
+    .rodape-logo {
+    width: 40px; /* Largura da logo */
+    height: auto; /* Altura proporcional à largura */
+    display: block; /* Garante que a logo seja tratada como bloco */
+    }
+
+    .rodape-text {
+    font-size: 0.9em; /* Tamanho do texto do rodapé */
+    color: aliceblue; /* Mesma cor do texto do menu superior */
+    }
+
+    @media (max-width: 768px) {
+    .rodape {
+        flex-direction: column; /* Empilha os itens no rodapé em telas menores */
+        text-align: center;
+    }
+    .rodape-content {
+        flex-direction: column; /* Empilha logo e texto no centro */
+        gap: 15px;
+    }
+    }
+
   </style>
 </head>
 <body>
@@ -261,10 +384,7 @@
     </div>
 
     <div class="buttons-container">
-      <button class="square-button transacao">
-        <i class="fas fa-plus-circle"></i>
-        Nova Transação
-      </button>
+        <a href="transacao.html" class="square-button transacao">Nova Transação</a>
       <button class="square-button importar">
         <i class="fas fa-file-import"></i>
         Importar Dados
@@ -278,7 +398,48 @@
         Transferir
       </button>
     </div>
-  </div>
+
+    <div class="container_graficos">
+        <div class="graficos">
+            <h2> Gastos Individuais</h2>
+            <p>Aqui voce visualiza seus gastos mensais</p> 
+        </div>
+        <div class="graficos">
+            <h2> Receitas</h2>
+            <p>Aqui voce visualiza suas receitas mensais</p> 
+        </div>
+        <div class="graficos">
+            <h2> Contas Pendentes </h2>
+            <p>Aqui voce visualiza suas contas em pendencia</p>  
+        </div>
+        <div class="graficos">
+            <h2> Contas Totais </h2>
+            <p>Aqui voce visualiza suas contas totais do mes</p> 
+        </div>
+    </div>
+    <div class="container_auxiliar">
+        <!-- Container auxiliar com atualizações -->
+        <div class="visaocontainer_auxiliar">
+          <h2>Atualizações Gerais</h2>
+          <p>Visualize aqui as atualizações dos seus outros membros familiares.</p>
+          
+          <!-- Quadros de atualizações -->
+          <div class="atualizacao">
+            <h3>Atualização de João</h3>
+            <p>João adicionou uma nova despesa de R$ 200,00 no orçamento familiar.</p>
+          </div>
+          <div class="atualizacao">
+            <h3>Atualização de Maria</h3>
+            <p>Maria concluiu o objetivo "Economizar para uma viagem".</p>
+          </div>
+          <div class="atualizacao">
+            <h3>Atualização de Pedro</h3>
+            <p>Pedro atualizou os valores da planilha de gastos mensais.</p>
+          </div>
+        </div>
+    </div>
+  
+</div>
 
   <script>
     function toggleSidebar() {
@@ -286,5 +447,16 @@
       sidebar.style.left = sidebar.style.left === '0px' ? '-280px' : '0px';
     }
   </script>
+  <footer class="rodape">
+    <div class="rodape-content">
+      <img src="logo.png" alt="Logo do site" class="rodape-logo" />
+      <p class="rodape-text"> 
+        Eduardo (inserir nome completo) - inserir matrícula
+        Maria Gabriela Couto - 221021536
+        Túlio André de Sousa Oliveira Filho - 221029060
+        </p>
+    </div>
+  </footer>
+  
 </body>
 </html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transações Bancárias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a237e;
+            --secondary: #3949ab;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f1c40f;
+            --background: #f5f5f5;
+            --white: #ffffff;
+            --text: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .transaction-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .balance-section {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .balance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .balance-card {
+            background-color: var(--background);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .balance-card h3 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .balance-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .transaction-section {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .transaction-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-buttons {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background-color: var(--background);
+            color: var(--text);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .recent-transactions {
+            margin-top: 2rem;
+        }
+
+        .transaction-list {
+            margin-top: 1rem;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .transaction-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .icon-credit {
+            background-color: var(--success);
+        }
+
+        .icon-debit {
+            background-color: var(--danger);
+        }
+
+        .transaction-details {
+            flex-grow: 1;
+        }
+
+        .transaction-amount {
+            font-weight: bold;
+        }
+
+        .amount-credit {
+            color: var(--success);
+        }
+
+        .amount-debit {
+            color: var(--danger);
+        }
+
+        @media (max-width: 768px) {
+            .balance-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .transaction-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Transações Bancárias</h1>
+    </header>
+
+    <main class="transaction-container">
+        <section class="balance-section">
+            <h2>Visão Geral</h2>
+            <div class="balance-grid">
+                <div class="balance-card">
+                    <h3>Saldo Atual</h3>
+                    <div class="balance-amount">R$ 5.420,00</div>
+                </div>
+                <div class="balance-card">
+                    <h3>Entradas (Mês)</h3>
+                    <div class="balance-amount amount-credit">R$ 3.250,00</div>
+                </div>
+                <div class="balance-card">
+                    <h3>Saídas (Mês)</h3>
+                    <div class="balance-amount amount-debit">R$ 1.830,00</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="transaction-section">
+            <h2>Nova Transação</h2>
+            <form class="transaction-form">
+                <div class="form-group">
+                    <label for="type">Tipo de Transação</label>
+                    <select id="type" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="credit">Crédito</option>
+                        <option value="debit">Débito</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Valor (R$)</label>
+                    <input type="number" id="amount" step="0.01" required placeholder="0,00">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descrição</label>
+                    <input type="text" id="description" required placeholder="Digite a descrição">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Categoria</label>
+                    <select id="category" required>
+                        <option value="">Selecione a categoria</option>
+                        <option value="salary">Salário</option>
+                        <option value="food">Alimentação</option>
+                        <option value="transport">Transporte</option>
+                        <option value="utilities">Contas</option>
+                        <option value="entertainment">Lazer</option>
+                    </select>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Confirmar Transação</button>
+                </div>
+            </form>
+
+            <div class="recent-transactions">
+                <h2>Transações Recentes</h2>
+                <div class="transaction-list">
+                    <div class="transaction-item">
+                        <div class="transaction-info">
+                            <div class="transaction-icon icon-credit">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h4>Salário</h4>
+                                <small>15/01/2025</small>
+                            </div>
+                        </div>
+                        <div class="transaction-amount amount-credit">+ R$ 3.250,00</div>
+                    </div>
+
+                    <div class="transaction-item">
+                        <div class="transaction-info">
+                            <div class="transaction-icon icon-debit">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h4>Supermercado</h4>
+                                <small>16/01/2025</small>
+                            </div>
+                        </div>
+                        <div class="transaction-amount amount-debit">- R$ 450,00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
