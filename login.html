@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finanças</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #1a237e;
+      --secondary-color: #00bcd4;
+      --background-color: #f5f5f5;
+      --text-color: #333;
+      --white: #ffffff;
+      --success: #2ecc71;
+      --danger: #ff4444;
+      --info: #3498db;
+      --neutral: #3b3a35;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* Header Styles */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .sidebar-trigger {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-trigger:hover {
+      transform: scale(1.1);
+    }
+
+    /* Navigation Styles */
+    .menu {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .menu a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--white);
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      min-width: 200px;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .submenu-button {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: none;
+      background: none;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submenu-button:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background-color: var(--white);
+      padding-top: 5rem;
+      transition: left 0.3s ease;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Main Content Styles */
+    .maininfo-container {
+      margin-top: 5rem;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .visaoinfo-container {
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Login Styles */
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    input {
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    /* Rodapé */
+    .rodape {
+    background-color: darkblue;
+    color: aliceblue;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .rodape-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    }
+
+    .rodape-logo {
+    width: 40px;
+    height: auto;
+    display: block;
+    }
+
+    .rodape-text {
+    font-size: 0.9em;
+    color: aliceblue;
+    }
+
+    @media (max-width: 768px) {
+    .rodape {
+        flex-direction: column;
+        text-align: center;
+    }
+    .rodape-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <button class="sidebar-trigger" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h1>Finanças Familiares</h1>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li class="dropdown">
+          <a href="#opcoes">Opções</a>
+          <ul class="dropdown-menu">
+            <li><button class="submenu-button">Dashboard</button></li>
+            <li><button class="submenu-button">Relatórios</button></li>
+            <li><button class="submenu-button">Configurações</button></li>
+            <li><a href="familia.html" class="submenu-button">Família</a></li>
+          </ul>
+        </li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container" style="margin-top: 10rem;">
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <label for="username">Nome de Usuário</label>
+      <input type="text" name="username" required>
+      <label for="password">Senha</label>
+      <input type="password" name="password" required>
+      <button type="submit">Entrar</button>
+    </form>
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+    <a href="/register">Não tem uma conta? Registre-se aqui.</a>
+  </div>
+
+  <footer class="rodape">
+    <div class="rodape-content">
+      <img src="logo.png" alt="Logo do site" class="rodape-logo" />
+      <p class="rodape-text"> 
+        Eduardo (inserir nome completo) - inserir matrícula
+        Maria Gabriela Couto - 221021536
+        Túlio André de Sousa Oliveira Filho - 221029060
+      </p>
+    </div>
+  </footer>
+  
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.style.left = sidebar.style.left === '0px' ? '-280px' : '0px';
+    }
+  </script>
+</body>
+</html>
